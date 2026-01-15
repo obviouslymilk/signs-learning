@@ -1,7 +1,7 @@
 export type SignCategory = 'warning' | 'priority' | 'restrictive' | 'mandatory' | 'special' | 'information' | 'service' | 'additional';
 
 export type Sign = {
-  rulesNumber: string
+  number: string
   name: string
   category: SignCategory
 };
