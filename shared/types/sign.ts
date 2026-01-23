@@ -4,4 +4,5 @@ export type Sign = {
   number: string
   name: string
   category: SignCategory
+  imageUrl: string
 };
