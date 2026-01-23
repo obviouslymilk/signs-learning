@@ -11,13 +11,20 @@ export default defineEventHandler(async (event) => {
   const category = getRouterParam(event, 'category');
 
   if (!category)
-    throw createError({ status: 400, statusText: 'Missing category' });
+    throw createError({
+      status: 400,
+      statusText: 'Bad Request',
+      message: 'Missing category',
+    });
 
   const dataPath = join(process.cwd(), 'server', 'data', `${category}.json`);
   const isAvailable = existsSync(dataPath);
 
   if (!isAvailable)
-    throw createError({ status: 400, statusText: 'No data for provided category' });
+    throw createError({
+      status: 404,
+      statusText: 'Not Found',
+      message: 'Data for provided category is not found' });
 
   const raw = await readFile(dataPath, 'utf-8');
   const dto = JSON.parse(raw) as SignDTO[];
